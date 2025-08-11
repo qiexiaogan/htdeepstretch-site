@@ -66,52 +66,6 @@
       </div>
     </section>
 
-    <!-- Contact -->
-    <section id="contact" class="section">
-      <div class="container grid">
-        <div class="col">
-          <h2>Contact Us</h2>
-          <form id="contactForm" class="contact-form" action="https://formspree.io/f/xblkqbrp" method="POST" novalidate>
-            <!-- Honeypot (spam trap) -->
-            <label class="hp" aria-hidden="true">Do not fill this in
-              <input type="text" name="_gotcha" tabindex="-1" autocomplete="off">
-            </label>
-          
-            <input type="hidden" name="_subject" value="New message from HT DeepStretch site" />
-            <!-- Optional: where Formspree sends the user after non-AJAX submit -->
-            <input type="hidden" name="_redirect" value="https://www.htdeepstretch.com#contact-success" />
-          
-            <label>
-              <span class="sr-only">Name</span>
-              <input type="text" name="name" placeholder="Name" required>
-            </label>
-          
-            <label>
-              <span class="sr-only">Email</span>
-              <input type="email" name="email" placeholder="Email" required>
-            </label>
-          
-            <label>
-              <span class="sr-only">Message</span>
-              <textarea name="message" rows="4" placeholder="Message" required></textarea>
-            </label>
-          
-            <button class="btn btn-primary" type="submit" id="contactSubmit">Send</button>
-          
-            <!-- Inline alerts -->
-            <p id="contactSuccess" class="alert success" role="status" aria-live="polite" hidden>
-              ✅ Thanks! Your message was sent. We’ll get back to you soon.
-            </p>
-            <p id="contactError" class="alert error" role="alert" aria-live="assertive" hidden>
-              ❌ Sorry, something went wrong. Please try again in a moment.
-            </p>
-          </form>
-        </div>
-        <div class="col map-hint" aria-hidden="true">
-          <div class="pin"></div>
-        </div>
-      </div>
-    </section>
   </main>
 
   <footer class="site-footer">
@@ -135,7 +89,6 @@
     </div>
   </footer>
 
-  <!-- Link to contact form script -->
-  <script src="contact.js"></script>
+
 </body>
 </html>
