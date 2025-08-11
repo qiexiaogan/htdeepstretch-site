@@ -1,39 +1,59 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact Us - HT DeepStretch</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact Us — HT DeepStretch</title>
+
+  <!-- IMPORTANT for project sites -->
+  <base href="/htdeepstretch-site/">
+
+  <!-- Fonts + shared CSS -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css?v=3">
 </head>
 <body>
+  <header class="site-header">
+    <div class="container">
+      <a class="logo" href="index.html"><span>HT</span></a>
+    </div>
+  </header>
 
-<header class="site-header">
-  <div class="container">
-    <a href="index.html" class="logo"><span>HT</span> DeepStretch</a>
-  </div>
-</header>
+  <main class="section">
+    <div class="container">
+      <h1>Contact Us</h1>
+      <p class="subhead">We’d love to hear from you. Please fill out the form below.</p>
 
-<section class="section">
-  <div class="container">
-    <h1>Contact Us</h1>
-    <p>We’d love to hear from you. Please fill out the form below.</p>
+      <form id="contactForm" class="contact-form" action="https://formspree.io/f/xblkqbrp" method="POST" novalidate>
+        <label class="hp" aria-hidden="true">Do not fill this in
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off">
+        </label>
+        <input type="hidden" name="_subject" value="New message from HT DeepStretch site" />
 
-    <form id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-      <label>Name:</label>
-      <input type="text" name="name" required>
-      
-      <label>Email:</label>
-      <input type="email" name="email" required>
-      
-      <label>Message:</label>
-      <textarea name="message" required></textarea>
-      
-      <button type="submit" class="btn btn-primary">Send Message</button>
-    </form>
-  </div>
-</section>
+        <label>
+          <span class="sr-only">Name</span>
+          <input type="text" name="name" placeholder="Name" required>
+        </label>
+        <label>
+          <span class="sr-only">Email</span>
+          <input type="email" name="email" placeholder="Email" required>
+        </label>
+        <label>
+          <span class="sr-only">Message</span>
+          <textarea name="message" rows="4" placeholder="Message" required></textarea>
+        </label>
+        <button class="btn btn-primary" type="submit" id="contactSubmit">Send</button>
 
-<script src="contact.js"></script>
+        <p id="contactSuccess" class="alert success" role="status" aria-live="polite" hidden>
+          ✅ Thanks! Your message was sent. We’ll get back to you soon.
+        </p>
+        <p id="contactError" class="alert error" role="alert" aria-live="assertive" hidden>
+          ❌ Sorry, something went wrong. Please try again in a moment.
+        </p>
+      </form>
+    </div>
+  </main>
+
+  <script src="./contact.js"></script>
 </body>
 </html>
