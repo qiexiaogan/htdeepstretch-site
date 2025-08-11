@@ -43,8 +43,30 @@ body {
   backdrop-filter: blur(6px);
 }
 .site-header .container{display:flex; align-items:center; gap:24px; padding:18px 20px}
-.logo{font-weight:800; letter-spacing:.5px; font-size:24px; color:var(--text); text-decoration:none}
-.logo span{border-bottom:2px solid var(--text); padding-bottom:4px}
+.logo {
+  font-weight: 800;
+  letter-spacing: .5px;
+  font-size: 24px;
+  color: var(--text);
+  text-decoration: none;
+  display: flex; 
+  align-items: baseline; /* aligns smaller DeepStretch text neatly */
+  gap: 6px; /* spacing between HT and DeepStretch */
+}
+
+.logo-main {
+  font-style: italic; /* only HT italic */
+  border-bottom: 2px solid var(--text);
+  padding-bottom: 4px;
+}
+
+.logo-sub {
+  font-weight: 300; /* lighter */
+  font-size: 16px;  /* smaller */
+  font-style: normal; /* no italic */
+  color: var(--muted);
+}
+
 
 /* Hero */
 .hero{padding:96px 0 36px}
