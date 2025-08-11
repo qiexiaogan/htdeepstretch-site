@@ -37,19 +37,6 @@ body{
 .site-header .container{display:flex; align-items:center; gap:24px; padding:18px 20px}
 .logo{font-weight:800; letter-spacing:.5px; font-size:24px; color:var(--text); text-decoration:none}
 .logo span{border-bottom:2px solid var(--text); padding-bottom:4px}
-.nav{margin-left:auto; display:flex; gap:28px}
-.nav a{color:var(--muted); text-decoration:none; font-weight:500}
-.nav a:hover,.nav a:focus{color:var(--text)}
-.nav-toggle{display:none; margin-left:auto; background:none; border:0; padding:6px; cursor:pointer}
-.nav-toggle span{display:block; width:24px; height:2px; background:var(--text); margin:5px 0}
-
-/* Mobile nav */
-@media (max-width: 720px){
-  .nav{position:absolute; right:20px; top:64px; background:#07393a; border:1px solid var(--line);
-       border-radius:14px; padding:10px 14px; display:none; flex-direction:column}
-  .nav.open{display:flex}
-  .nav-toggle{display:block}
-}
 
 /* Hero */
 .hero{padding:96px 0 36px}
