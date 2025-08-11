@@ -62,9 +62,10 @@ body {
 
 .logo-sub {
   font-weight: 300; /* lighter */
-  font-size: 16px;  /* smaller */
+  font-size: 20px;  /* smaller */
   font-style: normal; /* no italic */
-  color: var(--muted);
+  color: var(--text);
+  padding-left: 6px;
 }
 
 
