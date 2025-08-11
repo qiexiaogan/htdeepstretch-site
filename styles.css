@@ -59,7 +59,17 @@ body{
 .btn-primary:hover{filter:brightness(.95)}
 .btn-ghost{background:transparent; color:var(--text); border-color:var(--line)}
 .btn-ghost:hover{border-color:var(--text)}
+.btn-outline {
+  background: transparent;
+  color: #fff;
+  border: 2px solid #fff;
+  transition: background 0.2s ease, color 0.2s ease;
+}
 
+.btn-outline:hover {
+  background: #fff;
+  color: var(--bg-2);
+}
 /* Services */
 h2{font-size:clamp(28px, 3.2vw, 38px); margin:0 0 18px}
 h3{font-size:clamp(20px, 2.4vw, 24px); margin:0 0 4px}
