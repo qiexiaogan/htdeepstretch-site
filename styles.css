@@ -1,8 +1,8 @@
 :root{
-  --bg-1:#0e6a6b;      /* deep teal */
-  --bg-2:#0b5051;      /* darker teal */
-  --accent:#c0f3e7;    /* light mint accent */
-  --text:#eaf6f4;      /* off-white text */
+  --bg-1:#0e6a6b;
+  --bg-2:#0b5051;
+  --accent:#c0f3e7;
+  --text:#eaf6f4;
   --muted:#b7d9d6;
   --line: rgba(255,255,255,.15);
   --max:1120px;
@@ -84,4 +84,10 @@ h3{font-size:clamp(20px, 2.4vw, 24px); margin:0 0 4px}
 }
 
 /* About */
-.chips{display:flex; flex-wrap:wrap; gap:10px; padding:0; margin:6px 0
+.chips{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  padding:0;
+  margin:6px 0;
+}
