@@ -1,36 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact Us - HT DeepStretch</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="site-header">
-    <div class="container">
-      <a href="index.html" class="logo"><span>HT</span> DeepStretch</a>
-    </div>
-  </header>
 
-  <section class="section container">
+<header class="site-header">
+  <div class="container">
+    <a href="index.html" class="logo"><span>HT</span> DeepStretch</a>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container">
     <h1>Contact Us</h1>
-    <p>Fill out the form below and we’ll get back to you soon.</p>
-    <form id="contact-form">
-      <label for="name">Name:</label><br>
-      <input type="text" id="name" name="name" required><br><br>
+    <p>We’d love to hear from you. Please fill out the form below.</p>
 
-      <label for="email">Email:</label><br>
-      <input type="email" id="email" name="email" required><br><br>
-
-      <label for="message">Message:</label><br>
-      <textarea id="message" name="message" required></textarea><br><br>
-
-      <button type="submit" class="btn btn-primary">Send</button>
+    <form id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <label>Name:</label>
+      <input type="text" name="name" required>
+      
+      <label>Email:</label>
+      <input type="email" name="email" required>
+      
+      <label>Message:</label>
+      <textarea name="message" required></textarea>
+      
+      <button type="submit" class="btn btn-primary">Send Message</button>
     </form>
-    <p id="form-status"></p>
-  </section>
+  </div>
+</section>
 
-  <script src="contact.js"></script>
+<script src="contact.js"></script>
 </body>
 </html>
