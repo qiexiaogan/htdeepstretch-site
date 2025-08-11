@@ -91,3 +91,46 @@ h3{font-size:clamp(20px, 2.4vw, 24px); margin:0 0 4px}
   padding:0;
   margin:6px 0;
 }
+
+/* Contact */
+.contact-form {
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  gap: 16px; /* space between fields */
+  max-width: 500px; /* keep it nicely centered */
+}
+
+.contact-form label {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,0.05);
+  color: var(--text);
+  font-size: 1rem;
+  width: 100%;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: var(--muted);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(192,243,231,0.3);
+}
+
+.alert {
+  font-size: 0.9rem;
+}
+
+.alert.success { color: #9ef7d2; }
+.alert.error { color: #ffb3b3; }
