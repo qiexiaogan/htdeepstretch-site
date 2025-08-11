@@ -82,27 +82,10 @@ body {
 .hero + .section {
   padding-top: 20px; /* reduce space above Services */
 }
-h2{font-size:clamp(28px, 3.2vw, 38px); margin:0 0 18px}
-h3{font-size:clamp(20px, 2.4vw, 24px); margin:0 0 4px}
-
-.list{list-style:none; padding:0; margin:0; display:grid; gap:18px}
-.list p{margin:0; color:var(--muted)}
-.deco-card{
-  border:1.5px solid var(--line);
-  border-radius:28px;
-  min-height:220px;
-  position:relative;
-}
-.deco-card::before,.deco-card::after{
-  content:"";
-  position:absolute; inset:14px;
-  border:1px solid var(--line);
-  border-radius:26px;
-}
-.deco-card::after{
-  inset:auto 14px 14px 14px; height:36%;
-  border-radius:26px 26px 26px 26px;
-}
+h2 { font-size: clamp(26px, 3vw, 34px); margin: 0 0 14px; }
+h3 { font-size: clamp(18px, 2vw, 22px); margin: 0 0 2px; }
+.list { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+.list p { margin: 0; font-size: 0.9rem; line-height: 1.4; color: var(--muted); }
 
 /* About */
 .chips{
