@@ -8,58 +8,97 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
+  <link rel="preload" as="image" href="slide1.jpg">
+  <link rel="preload" as="image" href="hero-title.png">
+  <link rel="preload" as="image" href="hero-overlay.png">
+  <link rel="preload" as="image" href="right-split-background.png">
 </head>
 <body>
 <body>
-  <!-- Top Navigation -->
+    <!-- Top Navigation -->
   <header class="site-header">
-    <div class="container">
-      <a class="logo" href="#">
-        <span class="logo-main">HT</span>
-        <span class="logo-sub">DeepStretch</span>
+    <div class="container header-bar">
+      <a class="logo" href="https://www.htdeepstretch.com" aria-label="HT DeepStretch home">
+        <img src="logo.png" alt="HT DeepStretch" class="logo-img" />
       </a>
+
+      <div class="header-contact">
+        <a class="contact-item" href="https://maps.google.com/?q=55+Santa+Clara+Avenue,+Ste+165,+Oakland+CA+94610" target="_blank" rel="noopener">
+          <!-- location pin -->
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 2a7 7 0 0 0-7 7c0 4.97 7 13 7 13s7-8.03 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/>
+          </svg>
+          <span>55 Santa Clara Ave, Ste 165, Oakland CA 94610</span>
+        </a>
+
+        <a class="contact-item">
+          <!-- phone -->
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M6.6 10.8a15.9 15.9 0 0 0 6.6 6.6l2.2-2.2c.3-.3.8-.4 1.2-.2 1.3.5 2.8.8 4.2.8.7 0 1.2.5 1.2 1.2V20c0 .7-.5 1.2-1.2 1.2C10.9 21.2 2.8 13.1 2.8 2.8 2.8 2.1 3.3 1.6 4 1.6h2.9c.7 0 1.2.5 1.2 1.2 0 1.5.3 2.9.8 4.2.1.4 0 .9-.3 1.2l-2 2.6z"/>
+          </svg>
+          <span>(608) 949-0833</span>
+        </a>
+      </div>
     </div>
   </header>
 
-  <!-- Decorative background layers -->
-  <div class="bg fx-1"></div>
-  <div class="bg fx-2"></div>
-  <div class="bg fx-3"></div>
 
-  <main>
-    <!-- Hero -->
-    <section class="hero">
-      <div class="container">
-        <h1>MOVE FREE &amp;<br> LIVE HEALTHY</h1>
-        <p class="subhead">One-on-one assisted stretch,<br class="br-sm"> personalized for you.</p>
+  <div class="background-slideshow" aria-hidden="true">
+    <img src="slide1.jpg" alt="">
+    <img src="slide2.jpg" alt="">
+    <img src="slide3.jpg" alt="">
+    <img src="slide4.jpg" alt="">
+    <img src="slide5.jpg" alt="">
+  </div>
+
+  <div class="background-overlay" aria-hidden="true"></div>
+
+  <main class="split-layout">
+    <!-- Left half -->
+    <section class="split left">
+      <div class="split-bg split-bg-left"></div> <!-- background only -->
+      <div class="split-content">
+        <div class="hero-wrap">
+          <img
+            src="hero-title.png"
+            alt="MOVE FREE & LIVE HEALTHY"
+            class="hero-title-img"
+          />
+          <!-- the hover overlay image -->
+          <img
+            src="hero-title-effect.png"
+            alt=""
+            class="hero-effect"
+            aria-hidden="true"
+          />
+        </div>
         <div class="cta-row">
           <a href="contact.html" class="btn btn-primary">Contact for Availability</a>
-          <a href="#about" class="btn btn-outline">About Us</a>
           <a href="#about" class="btn btn-outline">Join Our Team</a>
         </div>
       </div>
     </section>
 
-    <!-- Services -->
-    <section id="services" class="section">
-      <div class="container grid">
-        <div class="col">
-          <h2>Services</h2>
-          <ul class="list">
-            <li>
-              <h3>Classic Stretch</h3>
-              <p>30min or 60min sessions</p>
-            </li>
-            <li>
-              <h3>Deep Stretch</h3>
-              <p>30min or 60min deep stretch sessions</p>
-            </li>
-          </ul>
-        </div>
-        <div class="col deco-card" aria-hidden="true"></div>
+    <!-- Right half -->
+    <section class="split right">
+      <div class="split-bg split-bg-right"></div> <!-- background only -->
+      <div class="split-content">
+        <h2>About Us</h2>
+        <p>
+          HT DeepStretch Studio is an Oakland-based one-on-one assisted stretch studio
+          offering more than just passive flexibility work.
+        </p>
+        <p>
+          We guide our clients through personalized, interactive stretching sessions
+          that blend assisted movement with mindful participation. Our goal is to empower
+          individuals to understand their own bodies, build sustainable flexibility habits,
+          and embrace a healthier, more active lifestyle.
+        </p>
+        <p>
+          We focus on education and long-term wellness—not just temporary relief.
+        </p>
       </div>
     </section>
-
   </main>
 </body>
 </html>

@@ -1,0 +1,12 @@
+#curve {
+  filter: drop-shadow(0 0 0 rgba(14,110,110,0));
+  transition: filter .25s ease;
+}
+#curve:hover {
+  animation: wobble .8s ease-in-out;
+  filter: drop-shadow(0 0 8px rgba(14,110,110,.35));
+}
+@keyframes wobble {
+  0%,100% { d:path("M10,150 C150,10 450,10 590,150"); }
+  50%     { d:path("M10,150 C180,30 420,30 590,150"); }
+}

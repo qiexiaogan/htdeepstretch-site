@@ -11,11 +11,11 @@
 
 html, body {
   height: 100%;
-  overflow: hidden; /* Prevents scrolling */
+  overflow: auto; /* Prevents scrolling */
 }
 
 *{box-sizing:border-box}
-html,body{height:100%}
+
 body {
   margin: 0;
   font: 16px/1.6 "Manrope", sans-serif;
@@ -23,9 +23,88 @@ body {
   font-weight: 400;
   font-style: normal;
   color: var(--text);
-  background: radial-gradient(1200px 800px at 85% 85%, #1d8a86 0%, var(--bg-1) 35%, var(--bg-2) 100%);
+  background: url('background.jpg') no-repeat center center fixed;
+  background-size: cover;
   overflow-x: hidden;
+  min-height: 100%;             /* can grow beyond viewport */
+  overflow-y: auto;             /* enable vertical scroll */
 }
+
+/* === Fullscreen Background Slideshow (2 images with overlapped crossfade) === */
+
+.background-slideshow {
+  position: fixed;
+  inset: 0;
+  z-index: 1;         /* behind page content */
+  overflow: hidden;
+  mix-blend-mode: multiply; /* key: multiply effect */
+}
+
+.background-slideshow img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: left bottom;
+  opacity: 0;
+  animation-fill-mode: both;  /* stick to keyframe values at start/end */
+
+
+  animation: fadeCycle 20s linear infinite both; /* linear + both */
+  will-change: opacity;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+
+}
+
+
+/* 1/3-cycle offsets for 3 images */
+.background-slideshow img:nth-child(1) { animation-delay: 0s; }
+.background-slideshow img:nth-child(2) { animation-delay: -4s; }  /* 12s / 3 */
+.background-slideshow img:nth-child(3) { animation-delay: -8s; }
+.background-slideshow img:nth-child(4) { animation-delay: -12s; }
+.background-slideshow img:nth-child(5) { animation-delay: -16s; }
+@keyframes fadeCycle {
+  0%, 35%  { opacity: 1; }  /* hold */
+  50%, 85% { opacity: 0; }  /* hidden */
+  100%     { opacity: 1; }  /* fades back in */
+}
+/* Overlay that color-dodges with the slideshow beneath it */
+/* Fade the overlay in/out every 6s */
+.background-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: url('overlay.png') center / cover no-repeat;
+  mix-blend-mode: color-dodge;
+  filter: brightness(0.95) contrast(1.05);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center bottom;
+
+  animation: overlayPulse 6s ease-in-out infinite;
+  will-change: opacity; /* perf hint */
+}
+
+/* Smooth opacity loop */
+@keyframes overlayPulse {
+  0%, 100% { opacity: 0.30; }
+  50%      { opacity: 0.60; }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .background-overlay {
+    animation: none;
+    opacity: 0.65; /* steady value */
+  }
+}
+
+/* Each image runs its own keyframes so fades overlap */
+.background-slideshow img:nth-child(1) {opacity: 1;}
+
 
 /* Layout helpers */
 .container{max-width:var(--max); margin:0 auto; padding:0 20px}
@@ -37,63 +116,187 @@ body {
 }
 
 /* Header */
-.site-header{
-  position:sticky; top:0; z-index:10;
-  background: linear-gradient(180deg, rgba(8,35,36,.7), rgba(8,35,36,0));
-  backdrop-filter: blur(6px);
-}
-.site-header .container{display:flex; align-items:center; gap:24px; padding:18px 20px}
-.logo {
-  font-weight: 800;
-  letter-spacing: .5px;
-  font-size: 24px;
-  color: var(--text);
-  text-decoration: none;
-  display: flex; 
-  align-items: baseline; /* aligns smaller DeepStretch text neatly */
-  gap: 6px; /* spacing between HT and DeepStretch */
-}
+/* Header overlay with fade */
+.site-header {
+  position: fixed;   /* overlay on top of splits */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
 
-.logo-main {
-  font-style: italic; /* only HT italic */
-  border-bottom: 2px solid var(--text);
-  padding-bottom: 4px;
-}
+  /* Smooth fade: solid at top → 70% at 30% → transparent at bottom */
+  background: linear-gradient(
+    180deg,
+    rgba(4, 51, 51, 1) 0%,
+    rgba(4, 51, 51, 0.7) 30%,
+    rgba(4, 51, 51, 0) 100%
+  );
 
-.logo-sub {
-  font-weight: 300; /* lighter */
-  font-size: 20px;  /* smaller */
-  font-style: normal; /* no italic */
-  color: var(--text);
-  padding-left: 6px;
+  padding: 16px 24px;  /* adjust spacing for your logo */
+}
+.site-header .container {
+  max-width: none;     /* override your global .container max-width */
+  padding-left: 5vw;   /* tiny breathing room */
+  padding-right: 5vw;
+}
+/* site header */
+.header-bar{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:12px; padding:0px 0px;  /* keep your existing header padding if you like */
 }
 
-
-/* Hero */
-.hero{padding:96px 0 36px}
-.hero h1{
-  font-size: clamp(36px, 6.1vw, 80px);
-  line-height:1.05; margin:0 0 16px; letter-spacing:.4px;
+/* logo image */
+.logo-img{
+  display:block;
+  height:clamp(80px, 5vh, 160px);            /* tweak as needed */
+  width:auto;
+  filter: drop-shadow(0 0 0 transparent); /* crisp on dark bg */
 }
-.subhead{font-size:clamp(14px, 2.1vw, 18px); color:var(--muted); margin:0 0 28px; letter-spacing: 1.25px; /* adjust this value for more or less spacing */}
-.br-sm{display:none}
-@media (max-width: 520px){ .br-sm{display:inline} }
 
-.cta-row{display:flex; gap:16px; flex-wrap:wrap}
+/* contact area */
+.header-contact{
+  display:flex; align-items:center; gap:22px; flex-wrap:wrap;
+}
+
+/* each contact item (icon + text) */
+.contact-item{
+  display:flex; align-items:center; gap:8px;
+  color: var(--muted);
+  text-decoration:none;
+  font-size: 0.95rem;
+  opacity:.95;
+}
+.contact-item:hover{ opacity:1; text-decoration: underline; }
+
+/* tiny icons */
+.icon{
+  width:16px; height:16px; fill: var(--text);
+  flex: 0 0 16px;
+  opacity:.9;
+}
+
+
+/* Split layout: left & right halves */
+.split-layout {
+  display: grid;
+  grid-template-columns: 60% 40%;
+  height: 100svh;         /* cover full viewport, top to bottom */
+}
+
+
+/* Shared split styles */
+.split {
+  display: flex;
+  justify-content: center; /* center horizontally */
+  align-items: center;     /* center vertically */
+  text-align: center;
+  position: relative;
+  overflow: visible; /* ensure bg stays inside */
+}
+
+.split-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0; /* base layer */
+}
+
+/* Left side solid color */
+.split-bg-left {
+  background-color: #0a494b; /* teal */
+}
+
+/* Right side image */
+.split-bg-right {
+  background: url('right-split-background.png') center center / cover no-repeat;
+  height: 100vh;      /* fills viewport vertically */
+}
+
+/* Content wrapper */
+/* Base grid: keep generic styles */
+.split-content {
+  display: grid;
+  grid-auto-flow: row;
+  justify-items: center;
+  gap: 16px;
+  position: relative;
+  z-index: 3;
+}
+
+.split.left {
+  display: flex;
+  justify-content: center;   /* vertical center */
+  align-items: center;       /* horizontal center */
+  padding-bottom: 8vh;       /* shrink the gap at bottom */
+  padding-top: 8vh;       /* shrink the gap at bottom */
+}
+
+.split.left .split-content {
+  align-content: center;
+  padding-bottom: 0vh;         /* gap to bottom of viewport */
+  padding-top: 0;              /* no top padding */
+}
+
+/* wrapper so effect can layer */
+.hero-wrap {
+  position: relative;
+  display: inline-block;   /* shrink to image size */
+  line-height: 0;          /* prevent inline gaps */
+}
+
+/* main hero image */
+.hero-title-img {
+  display: block;
+  width: auto;             /* don’t stretch horizontally */
+  max-width: 80vw;         /* responsive width */
+  max-height: 70vh;        /* responsive height */
+  height: auto;            /* keep aspect ratio */
+  margin: 0 auto;          /* center horizontally */
+
+}
+
+/* overlay effect image */
+.hero-effect {
+  position: absolute;
+  inset: 0;                  /* cover hero image */
+  width: 100%;
+  height: 100%;
+  object-fit: contain;        /* keep aspect ratio */
+  opacity: 0;                 /* hidden by default */
+  transition: opacity 1s ease;
+  pointer-events: none;       /* don’t block hover/click */
+}
+
+/* fade in/out on hover */
+.hero-wrap:hover .hero-effect {
+  opacity: 1;
+}
+
+/* Buttons */
+.cta-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(10px, 3.5vw, 16px);
+  position: relative;
+  z-index: 20;
+}
+
 .btn{
   display:inline-block; padding:.9rem 1.3rem; border-radius:12px;
   text-decoration:none; font-weight:600; border:1.5px solid transparent;
   transition:transform .06s ease, background .2s ease, color .2s ease, border-color .2s ease;
+  position: relative;      /* needed to apply z-index */
+  z-index: 10;             /* higher than overlay */
 }
 .btn:active{transform:translateY(1px)}
-.btn-primary{background:var(--text); color:#0b3d3e}
-.btn-primary:hover{filter:brightness(.95)}
-.btn-ghost{background:transparent; color:var(--text); border-color:var(--line)}
-.btn-ghost:hover{border-color:var(--text)}
+.btn-primary{background:var(--text); color:#0a494b;font-weight: 1000;}
+.btn-primary:hover{filter:brightness(.75)}
 .btn-outline {
-  background: transparent;
+  background: rgb(255, 255, 255, 0.2);
   color: #fff;
   border: 2px solid #fff;
+  backdrop-filter: blur(4px); /* optional "frosted glass" effect */
+  mix-blend-mode: normal;     /* prevent overlay blending */
   transition: background 0.2s ease, color 0.2s ease;
 }
 
@@ -101,24 +304,28 @@ body {
   background: #fff;
   color: var(--bg-2);
 }
-/* Services */
-.hero + .section {
-  padding-top: 20px; /* reduce space above Services */
-}
-h2 { font-size: clamp(22px, 2.5vw, 30px); margin: 0 0 12px; }
-h3 { font-size: clamp(16px, 1.8vw, 20px); margin: 0 0 2px; }
-.list { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
-.list p { margin: 0; font-size: 0.85rem; line-height: 1.35; color: var(--muted); }
 
 
-/* About */
-.chips{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  padding:0;
-  margin:6px 0;
+/* Right split */
+.split.right {
+  display: flex;
+  justify-content: flex-start; /* align horizontally to left */
+  align-items: flex-start;     /* align vertically to top */
+  text-align: left;            /* left-align text */
+  padding: 98px;               /* add some breathing room from edges */
 }
+
+/* style text inside */
+.split.right .split-content {
+  justify-items: start; /* align child elements to left */
+  text-align: left;     /* align text to left */
+  align-content: start; /* keep items at top */
+  display: block;   /* don’t use grid here */
+}
+
+
+
+
 
 /* Contact */
 .contact-form {
@@ -162,3 +369,48 @@ h3 { font-size: clamp(16px, 1.8vw, 20px); margin: 0 0 2px; }
 
 .alert.success { color: #9ef7d2; }
 .alert.error { color: #ffb3b3; }
+
+
+@media (max-width: 1088px) {
+  /* allow page to scroll and let content define height */
+  html, body {
+    height: auto;
+    overflow: auto;
+  }
+
+  /* stack left/right; remove the fixed viewport height */
+  .split-layout {
+    display: block;     /* stack */
+    height: auto;       /* no forced 100vh */
+  }
+
+  /* each split is only as tall as needed, with modest vertical padding */
+  .split {
+    align-items: start; /* no vertical centering → reduces tall look */
+    text-align: left;
+    padding-block: clamp(40px, 8vh, 88px); /* responsive top/bottom padding */
+    min-height: unset;  /* don't force big sections */
+  }
+  
+  .split.left {
+    display: flex;
+    flex-direction: column;    /* stack hero + buttons */
+    justify-content: center;   /* vertical center */
+    align-items: center;       /* horizontal center */
+  }
+  /* button stack spacing a bit tighter on mobile */
+  .cta-row {
+    gap: clamp(10px, 3.5vw, 16px);
+  }
+
+  /* right split text width for readability */
+  .split.right .split-content {
+    max-width: 600px;
+    margin: 0 auto;
+    gap: clamp(12px, 3.5vw, 20px);
+  }
+    .header-contact {
+    display: none;
+  }
+
+}
