@@ -274,15 +274,14 @@ body {
 /* Buttons */
 .cta-row {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: clamp(10px, 3.5vw, 16px);
-  position: relative;
-  z-index: 20;
+  flex-direction: row;     /* place buttons side by side */
+  justify-content: center; /* center the group */
+  align-items: center;     /* align vertically */
+  gap: 2vw;              /* increase spacing between buttons */
 }
 
 .btn{
-  display:inline-block; padding:.9rem 1.3rem; border-radius:12px;
+  display:inline-block; padding:.9rem 1rem; border-radius:12px;
   text-decoration:none; font-weight:600; border:1.5px solid transparent;
   transition:transform .06s ease, background .2s ease, color .2s ease, border-color .2s ease;
   position: relative;      /* needed to apply z-index */
@@ -305,7 +304,6 @@ body {
   color: var(--bg-2);
 }
 
-
 /* Right split */
 .split.right {
   display: flex;
@@ -323,9 +321,56 @@ body {
   display: block;   /* don’t use grid here */
 }
 
+.right-content {
+  text-align: left;       /* left align text */
+  align-items: flex-start; /* prevent vertical centering */
+  padding-top: 2vh; /* adjust as needed */
+}
+
+.tab-buttons {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 3vh;
+}
+
+.tab-btn {
+  padding: 0.5rem 1.6rem;   /* bigger clickable area */
+  font-size: 1.1rem;        /* larger text */
+  border: 1px solid var(--muted);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.tab-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.tab-btn.active {
+  background: var(--accent);
+  color: #0a494b;
+  font-weight: 600;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
 
 
-
+.service h3 {
+  margin-top: 1px;   /* adjust distance above */
+  margin-bottom: 0.2rem; /* tighten distance below */
+  font-size: 1.1rem;  /* optional: slightly smaller */
+  font-weight: 700;   /* keep it bold but not oversized */
+  border-bottom: 2.5px solid var(--line); /* thin underline */
+  padding-bottom: 2px;     /* space between text and line */
+}
 
 /* Contact */
 .contact-form {

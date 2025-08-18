@@ -36,7 +36,7 @@
           <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M6.6 10.8a15.9 15.9 0 0 0 6.6 6.6l2.2-2.2c.3-.3.8-.4 1.2-.2 1.3.5 2.8.8 4.2.8.7 0 1.2.5 1.2 1.2V20c0 .7-.5 1.2-1.2 1.2C10.9 21.2 2.8 13.1 2.8 2.8 2.8 2.1 3.3 1.6 4 1.6h2.9c.7 0 1.2.5 1.2 1.2 0 1.5.3 2.9.8 4.2.1.4 0 .9-.3 1.2l-2 2.6z"/>
           </svg>
-          <span>(608) 949-0833</span>
+          <span>(510) 281-9189</span>
         </a>
       </div>
     </div>
@@ -72,33 +72,73 @@
             aria-hidden="true"
           />
         </div>
-        <div class="cta-row">
-          <a href="contact.html" class="btn btn-primary">Contact for Availability</a>
-          <a href="#about" class="btn btn-outline">Join Our Team</a>
+        <div class="cta-row">          
+            <a href="contact.html" class="btn btn-primary">Contact for Availability</a>
+            <a href="#about" class="btn btn-outline">Join Our Team</a>
         </div>
       </div>
     </section>
 
     <!-- Right half -->
     <section class="split right">
-      <div class="split-bg split-bg-right"></div> <!-- background only -->
-      <div class="split-content">
-        <h2>About Us</h2>
-        <p>
-          HT DeepStretch Studio is an Oakland-based one-on-one assisted stretch studio
-          offering more than just passive flexibility work.
-        </p>
-        <p>
-          We guide our clients through personalized, interactive stretching sessions
-          that blend assisted movement with mindful participation. Our goal is to empower
-          individuals to understand their own bodies, build sustainable flexibility habits,
-          and embrace a healthier, more active lifestyle.
-        </p>
-        <p>
-          We focus on education and long-term wellness—not just temporary relief.
-        </p>
+      <div class="split-content right-content">
+        
+        <!-- Tab buttons -->
+        <div class="tab-buttons">
+          <button class="tab-btn active" data-target="about">About Us</button>
+          <button class="tab-btn" data-target="services">Services</button>
+        </div>
+
+        <!-- Tab content -->
+        <div class="tab-content active" id="about">
+          <p>
+            HT DeepStretch Studio is an Oakland-based one-on-one assisted stretch studio
+            offering more than just passive flexibility work.
+          </p>
+          <p>
+            We guide our clients through personalized, interactive stretching sessions
+            that blend assisted movement with mindful participation. Our goal is to empower
+            individuals to understand their own bodies, build sustainable flexibility habits,
+            and embrace a healthier, more active lifestyle.
+          </p>
+          <p>
+            We focus on education and long-term wellness—not just temporary relief.
+          </p>
+        </div>
+
+        <div class="tab-content" id="services">
+          <div class="service">
+            <h3>Classic Stretch</h3>
+            <p>
+              <strong>Overview:</strong> A full-body assisted stretch designed to deliver consistent,
+              effective stretches that enhance flexibility, improve range of motion, and leave you feeling
+              refreshed and revitalized.
+            </p>
+            <p>
+              <strong>Best For:</strong> Clients seeking a balanced, restorative stretch to improve mobility,
+              maintain flexibility, and support overall physical performance — ideal for regular wellness
+              maintenance and active lifestyles.
+            </p>
+          </div>
+
+          <div class="service">
+            <h3>Deep Stretch</h3>
+            <p>
+              <strong>Overview:</strong> A highly personalized, deeper-intensity stretching session that pinpoints
+              tight muscle groups, releases deeper adhesions in the fascia and soft tissues, and aligns the body —
+              leaving you feeling re-charged and re-energized.
+            </p>
+            <p>
+              <strong>Best For:</strong> Clients who enjoy or can tolerate a more intensive stretch, including athletes,
+              active individuals, and those seeking to boost performance, target chronic tightness, and speed up recovery.
+            </p>
+          </div>
+        </div>
+        
       </div>
     </section>
+
   </main>
+<script src="toggle-content.js"></script>
 </body>
 </html>
