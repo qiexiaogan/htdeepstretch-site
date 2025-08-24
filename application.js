@@ -1,19 +1,11 @@
 (function () {
   // Modal functionality
-  const modal = document.getElementById('contactModal');
-  const contactBtn = document.getElementById('contactBtn');
-  const promoContactBtn = document.getElementById('promoContactBtn');
-  const closeBtn = document.getElementById('closeModal');
+  const modal = document.getElementById('applicationModal');
+  const applyBtn = document.getElementById('applyBtn');
+  const closeBtn = document.getElementById('closeApplicationModal');
 
   // Open modal
-  contactBtn.addEventListener('click', () => {
-    modal.classList.add('show');
-    document.body.style.overflow = 'hidden'; // Prevent background scrolling
-  });
-
-  // Open modal from promo button
-  promoContactBtn.addEventListener('click', (e) => {
-    e.preventDefault();
+  applyBtn.addEventListener('click', () => {
     modal.classList.add('show');
     document.body.style.overflow = 'hidden'; // Prevent background scrolling
   });
@@ -41,14 +33,14 @@
   });
 
   // Form handling
-  const form = document.getElementById('contactForm');
-  const btn  = document.getElementById('contactSubmit');
-  const ok   = document.getElementById('contactSuccess');
-  const err  = document.getElementById('contactError');
+  const form = document.getElementById('applicationForm');
+  const btn = document.getElementById('applicationSubmit');
+  const ok = document.getElementById('applicationSuccess');
+  const err = document.getElementById('applicationError');
 
   // Optional: auto-save drafts so users don't lose text
-  const fields = ['name','email','phone','message'];
-  const key = 'contactDraft';
+  const fields = ['name', 'email', 'phone', 'jobRole', 'message'];
+  const key = 'applicationDraft';
   try {
     const saved = JSON.parse(localStorage.getItem(key) || '{}');
     fields.forEach(f => {
@@ -72,27 +64,26 @@
     if (!form.reportValidity()) return;
 
     btn.disabled = true;
-    btn.textContent = 'Sending…';
+    btn.textContent = 'Submitting…';
 
-    const data = Object.fromEntries(new FormData(form).entries());
+    const formData = new FormData(form);
 
     try {
       const res = await fetch(form.action, {
         method: 'POST',
-        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
+        body: formData
       });
 
       if (res.ok) {
         ok.hidden = false;
         form.reset();
-        localStorage.removeItem('contactDraft');
+        localStorage.removeItem('applicationDraft');
         
-        // Close modal after successful submission (optional)
+        // Close modal after successful submission
         setTimeout(() => {
           modal.classList.remove('show');
           document.body.style.overflow = '';
-        }, 2000);
+        }, 3000);
       } else {
         const info = await res.json().catch(() => ({}));
         err.textContent = info?.errors?.[0]?.message || 'Sorry, something went wrong. Please try again.';
@@ -102,7 +93,7 @@
       err.hidden = false;
     } finally {
       btn.disabled = false;
-      btn.textContent = 'Send';
+      btn.textContent = 'Submit Application';
     }
   });
 })();

@@ -1,0 +1,448 @@
+/* Career Page Styles */
+
+/* Header back button */
+.back-btn {
+  color: var(--text);
+  text-decoration: none;
+  font-size: 1.8rem;
+  font-weight: 400;
+  transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+  color: var(--accent);
+}
+
+/* Independent scrolling for splits */
+.split.left {
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) transparent;
+  align-items: flex-start; /* align content to top instead of center */
+  justify-content: center; 
+  padding-top: 2vh; /* add some top padding */
+  padding-bottom: 2vh; /* add some bottom padding */
+  background: #0a494b; /* ensure background covers full scroll area */
+}
+
+.split.right {
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) transparent;
+  background: url('right-split-background.png') center center / cover no-repeat; /* apply background to entire split */
+}
+
+/* Right split background for career page */
+.split.right .split-bg {
+  background: url('right-split-background.png') center center / cover no-repeat;
+  min-height: 100%; /* extend background to cover all content */
+  position: sticky; /* keep background in place while scrolling */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+/* Right split content padding */
+.split.right .split-content {
+  padding: 3rem 4rem;
+}
+
+/* Custom scrollbar styling for webkit browsers */
+.split.left::-webkit-scrollbar,
+.split.right::-webkit-scrollbar {
+  width: 8px;
+}
+
+.split.left::-webkit-scrollbar-track,
+.split.right::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.split.left::-webkit-scrollbar-thumb,
+.split.right::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 4px;
+  opacity: 0.7;
+}
+
+.split.left::-webkit-scrollbar-thumb:hover,
+.split.right::-webkit-scrollbar-thumb:hover {
+  opacity: 1;
+}
+
+.career-title {
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--text);
+  text-align: center;
+  margin: 0 0 1rem 0;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.career-subtitle {
+  font-size: 1rem;
+  color: var(--muted);
+  text-align: left;
+  margin: 0 0 2rem 0;
+  font-weight: 400;
+}
+
+
+.job-openings-section {
+  margin: 2rem 0;
+  text-align: left;
+  max-width: 90%;
+  padding-top: 3rem; /* add top padding for better spacing */
+  padding-bottom: 2rem; /* ensure space at bottom for scrolling */
+  margin-left: auto; /* center horizontally */
+  margin-right: auto; /* center horizontally */
+}
+
+/* Override the default centering for career page left split */
+.split.left .split-content {
+  align-content: flex-start;
+  justify-items: flex-start;
+  text-align: center;
+  width: 100%;
+  max-width: 90%;
+}
+
+.section-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--accent);
+  text-align: center;
+  margin: 0 0 1.5rem 0;
+}
+
+.job-opening {
+  margin-bottom: 2.5rem;
+  padding: 1.5rem;
+  background: rgba(255,255,255,0.05);
+  border-radius: 12px;
+  border: 1px solid var(--line);
+}
+
+.job-opening h3 {
+  color: var(--text);
+  font-size: 1.2rem;
+  margin: 0 0 1rem 0;
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 0.5rem;
+}
+
+.job-opening h4 {
+  color: var(--text);
+  font-size: 1rem;
+  margin: 1.5rem 0 0.5rem 0;
+  font-weight: 600;
+}
+
+.job-opening p {
+  margin: 0.5rem 0;
+  line-height: 1.6;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.job-opening ul {
+  margin: 0.5rem 0 1rem 1.5rem;
+  padding: 0;
+}
+
+.job-opening li {
+  margin: 0.3rem 0;
+  line-height: 1.5;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.benefit-category {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: rgba(255,255,255,0.03);
+  border-radius: 8px;
+  border-left: 3px solid var(--accent);
+}
+
+.benefit-category h4 {
+  color: var(--accent);
+  font-size: 1.2rem;
+  margin: 0 0 1rem 0;
+  font-weight: 600;
+}
+
+.benefit-category ul {
+  margin: 0 0 0 1.5rem;
+  padding: 0;
+}
+
+.benefit-category li {
+  margin: 0.3rem 0;
+  line-height: 1.5;
+}
+
+/* Responsive adjustments for career page */
+@media (max-width: 768px) {
+  .career-title {
+    font-size: 2.5rem;
+  }
+  
+  .career-subtitle {
+    font-size: 1rem;
+  }
+  
+  .section-title {
+    font-size: 1.5rem;
+  }
+  
+  .job-openings-section {
+    max-width: 95%;
+    margin: 1.5rem 0;
+  }
+  
+  .job-opening {
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .benefit-category {
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* Mission content styling */
+.mission-content {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.mission-content h3 {
+  color: var(--accent);
+  font-size: 0.95rem;
+  margin: 1.5rem 0 1rem 0;
+  font-weight: 600;
+}
+
+.mission-content h3:first-child {
+  margin-top: 0;
+}
+
+.mission-content p {
+  margin: 0.8rem 0;
+  line-height: 1.6;
+  color: var(--text);
+  font-size: 0.9rem;
+}
+
+.mission-content ul {
+  margin: 0.8rem 0 1.5rem 0;
+  padding: 0;
+  list-style: none;
+}
+
+.mission-content li {
+  margin: 0.4rem 0;
+  line-height: 1.5;
+  color: var(--text);
+  font-size: 0.9rem;
+}
+
+/* CTA section styling */
+.cta-section {
+  text-align: center;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--line);
+}
+
+/* Ensure scrolling works on mobile */
+@media (max-width: 1088px) {
+  .split.left,
+  .split.right {
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+}
+
+/* Modal styles for career page */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+}
+
+.modal.show {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background: var(--bg-1);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 0;
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 2rem 0.3rem 2rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.modal-header h2 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 0;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  line-height: 1;
+}
+
+.modal-close:hover {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.modal-subhead {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin: 0 2rem 1rem 2rem;
+  line-height: 1.4;
+}
+
+/* Modal form styling */
+.modal .contact-form {
+  background: none;
+  padding: 0 2rem 1.5rem 2rem;
+  border: none;
+  backdrop-filter: none;
+}
+
+.modal .contact-form label {
+  margin-bottom: 0.8rem;
+}
+
+.modal .contact-form input,
+.modal .contact-form textarea,
+.modal .contact-form select {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--line);
+  color: var(--text);
+}
+
+.modal .contact-form input:focus,
+.modal .contact-form textarea:focus,
+.modal .contact-form select:focus {
+  border-color: var(--accent);
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 0 3px rgba(192, 243, 231, 0.2);
+}
+
+.modal .contact-form select {
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: "Manrope", sans-serif;
+  cursor: pointer;
+}
+
+.modal .contact-form select option {
+  background: var(--bg-1);
+  color: var(--text);
+}
+
+/* File input styling */
+.modal .contact-form input[type="file"] {
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.modal .contact-form input[type="file"]:focus {
+  border-color: var(--accent);
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 0 3px rgba(192, 243, 231, 0.2);
+}
+
+.modal .contact-form input[type="file"]::file-selector-button {
+  background: var(--accent);
+  color: var(--bg-1);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  margin-right: 1rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.modal .contact-form input[type="file"]::file-selector-button:hover {
+  background: var(--text);
+  color: var(--bg-1);
+}
+
+.modal .contact-form button {
+  margin-top: 1.2rem;
+}
+
+/* Alert styling for modal */
+.modal .alert {
+  margin: 1rem 2rem 0 2rem;
+}
+
+/* Responsive modal */
+@media (max-width: 768px) {
+  .modal-content {
+    width: 95%;
+    margin: 1rem;
+  }
+  
+  .modal-header {
+    padding: 1rem 1.5rem 0.5rem 1.5rem;
+  }
+  
+  .modal-subhead {
+    margin: 0 1.5rem 1rem 1.5rem;
+  }
+  
+  .modal .contact-form {
+    padding: 0 1.5rem 1.5rem 1.5rem;
+  }
+  
+  .modal .alert {
+    margin: 1rem 1.5rem 0 1.5rem;
+  }
+} 

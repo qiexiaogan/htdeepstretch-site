@@ -10,18 +10,37 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./contact.css">
+  <link rel="preload" as="image" href="slide1.jpg">
+  <link rel="preload" as="image" href="overlay.png">
 </head>
 <body>
+  <!-- Top Navigation -->
   <header class="site-header">
-    <div class="container">
-      <a class="logo" href="index.html"><span>HT</span></a>
+    <div class="container header-bar">
+      <a class="logo" href="index.html" aria-label="HT DeepStretch home">
+        <img src="logo.png" alt="HT DeepStretch" class="logo-img" />
+      </a>
+      <a href="index.html" class="back-btn">back</a>
     </div>
   </header>
 
-  <main class="section">
+  <!-- Background slideshow -->
+  <div class="background-slideshow" aria-hidden="true">
+    <img src="slide1.jpg" alt="">
+    <img src="slide2.jpg" alt="">
+    <img src="slide3.jpg" alt="">
+    <img src="slide4.jpg" alt="">
+    <img src="slide5.jpg" alt="">
+  </div>
+
+  <!-- Background overlay -->
+  <div class="background-overlay" aria-hidden="true"></div>
+
+  <main class="contact-page">
     <div class="container">
       <h1>Contact Us</h1>
-      <p class="subhead">We’d love to hear from you. Please fill out the form below.</p>
+      <p class="subhead">Leave us a message and we'll get back to you as soon as possible.</p>
 
       <form id="contactForm" class="contact-form" action="https://formspree.io/f/xblkqbrp" method="POST" novalidate>
         <input type="text" name="_gotcha" style="display:none">
@@ -34,6 +53,10 @@
         <label>
           <span class="sr-only">Email</span>
           <input type="email" name="email" placeholder="Email" required>
+        </label>
+        <label>
+          <span class="sr-only">Phone</span>
+          <input type="tel" name="phone" placeholder="Phone Number">
         </label>
         <label>
           <span class="sr-only">Message</span>
