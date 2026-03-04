@@ -2,18 +2,10 @@
   // Modal functionality
   const modal = document.getElementById('contactModal');
   const contactBtn = document.getElementById('contactBtn');
-  const promoContactBtn = document.getElementById('promoContactBtn');
   const closeBtn = document.getElementById('closeModal');
 
   // Open modal
   contactBtn.addEventListener('click', () => {
-    modal.classList.add('show');
-    document.body.style.overflow = 'hidden'; // Prevent background scrolling
-  });
-
-  // Open modal from promo button
-  promoContactBtn.addEventListener('click', (e) => {
-    e.preventDefault();
     modal.classList.add('show');
     document.body.style.overflow = 'hidden'; // Prevent background scrolling
   });
