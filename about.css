@@ -1,0 +1,55 @@
+/* About two-column layout */
+.about-layout {
+  display: flex;
+  gap: 2rem;
+}
+.about-left {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+}
+.about-layout .title-subpage { color: var(--mud-soil); }
+
+.about-content {
+  flex: 7;
+  font-family: futura-100, sans-serif;
+  font-weight: 500;
+  color: var(--dark-teal);
+  line-height: 1.5;
+  font-size: clamp(1.125rem, 1.2rem + 0.4vw, 1.5rem);
+}
+
+.about-content { margin-top: 4rem; }
+.about-p1 { padding-left: 2vw; width: 48vw;}
+.about-p2 { padding-top:2rem;padding-left: 8vw; width: 56vw;}
+.about-p3 { padding-top:4rem; padding-left: 38vw;width: 62vw; }
+
+
+/* Portrait: same layout as studio — main at top, allow scroll */
+@media (max-aspect-ratio: 950/1180) {
+  main.about-layout {
+    position: static;
+    height: auto;
+    min-height: 0;
+    bottom: auto;
+    top: auto;
+    left: auto;
+    justify-content: flex-start;
+    padding: 1.5rem 1.5rem 3rem;
+    gap: 2vh;
+  }
+  .about-layout {
+    flex-direction: column;
+  }
+  /* Use full width so there’s no big gap on the right */
+  .about-content { margin-top: 0;   line-height: 1.3;}
+  .about-p1 { margin-top: 0;padding-left: 2vw; width: 78vw;}
+  .about-p2 {margin-top: 0; padding-top:0;padding-left: 8vw; width: 84vw;}
+  .about-p3 {margin-top: 0; padding-top:0; padding-left: 18vw;width: 90vw; }
+  
+  .about-content {
+    font-size: clamp(0.7rem, 0.1rem + 1.8vh, 1.5rem);
+  }
+}
+
+S

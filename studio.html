@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Studio — HT DeepStretch</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="studio.css" />
+  <link rel="stylesheet" href="contact.css" />
+</head>
+<body>
+  <div id="bezier-bg" class="bezier-bg" aria-hidden="true"></div>
+  <header class="site-header">
+    <div class="header-bar">
+      <a class="logo" href="index.html" aria-label="HT DeepStretch home">
+        <img src="images/logo.png" alt="HT DeepStretch" class="logo-img" />
+      </a>
+      <button class="nav-toggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav>
+        <a href="about.html">Why DeepStretch</a>
+        <a href="studio.html" class="active">Our Studio</a>
+        <a href="#" id="contactBtn" class="nav-btn contact-trigger">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="studio-layout">
+    <div class="studio-left">
+      <h1 class="title-subpage">
+        <img src="images/titlemark.png" alt="" class="titlemark" />
+        <span class="title-subpage-text">
+          <span>Our</span>
+          <span>Oakland</span>
+          <span>Studio.</span>
+        </span>
+      </h1>
+      <p class="studio-text"><!-- Studio description text --></p>
+      <a href="https://deepstretch.as.me/schedule/b7cc71d9/?appointmentTypeIds%5B%5D=83541179" class="cta-btn">
+        Book Your Sessions <img src="images/arrow.png" alt="" class="cta-arrow" />
+      </a>
+      <a href="#" class="contact-trigger contact-cta-portrait">Contact</a>
+    </div>
+    <div class="studio-gallery">
+      <div class="gallery-viewer">
+        <img src="images/studio-photos/web photo/1.jpg" alt="Studio photo 1" class="gallery-main" />
+        <button class="gallery-prev" aria-label="Previous">&#10094;</button>
+        <button class="gallery-next" aria-label="Next">&#10095;</button>
+      </div>
+      <div class="gallery-dots">
+        <span class="gallery-dot active"></span>
+        <span class="gallery-dot"></span>
+        <span class="gallery-dot"></span>
+        <span class="gallery-dot"></span>
+        <span class="gallery-dot"></span>
+        <span class="gallery-dot"></span>
+      </div>
+    </div>
+  </main>
+  <script src="bezier-background.js"></script>
+  <script src="contact.js"></script>
+  <script>
+    document.querySelector('.nav-toggle').addEventListener('click', function() {
+      this.classList.toggle('open');
+      document.querySelector('nav').classList.toggle('open');
+    });
+
+    (function() {
+      var photos = [
+        'images/studio-photos/web photo/1.jpg',
+        'images/studio-photos/web photo/2.jpg',
+        'images/studio-photos/web photo/3.jpg',
+        'images/studio-photos/web photo/4.jpg',
+        'images/studio-photos/web photo/5.jpg',
+        'images/studio-photos/web photo/6.jpg'
+      ];
+      var dots = document.querySelectorAll('.gallery-dot');
+      var main = document.querySelector('.gallery-main');
+      var idx = 0;
+      var autoplayMs = 3500;
+      var autoplayId = null;
+
+      function show(i) {
+        idx = (i + photos.length) % photos.length;
+
+        // fade out, swap image, then fade back in
+        main.classList.add('is-fading');
+        setTimeout(function() {
+          main.src = photos[idx];
+          dots.forEach(function(d) { d.classList.remove('active'); });
+          dots[idx].classList.add('active');
+          main.classList.remove('is-fading');
+        }, 600); // match the CSS transition so fade is visible
+      }
+
+      function startAutoplay() {
+        if (autoplayId !== null) return;
+        autoplayId = setInterval(function() {
+          show(idx + 1);
+        }, autoplayMs);
+      }
+
+      function restartAutoplay() {
+        if (autoplayId !== null) {
+          clearInterval(autoplayId);
+          autoplayId = null;
+        }
+        startAutoplay();
+      }
+
+      dots.forEach(function(d, i) {
+        d.addEventListener('click', function() {
+          show(i);
+          restartAutoplay();
+        });
+      });
+      document.querySelector('.gallery-prev').addEventListener('click', function() {
+        show(idx - 1);
+        restartAutoplay();
+      });
+      document.querySelector('.gallery-next').addEventListener('click', function() {
+        show(idx + 1);
+        restartAutoplay();
+      });
+
+      // kick off autoplay
+      startAutoplay();
+    })();
+  </script>
+</body>
+</html>

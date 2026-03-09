@@ -1,100 +1,103 @@
 (function () {
-  // Modal functionality
-  const modal = document.getElementById('contactModal');
-  const contactBtn = document.getElementById('contactBtn');
-  const closeBtn = document.getElementById('closeModal');
+  'use strict';
 
-  // Open modal
-  contactBtn.addEventListener('click', () => {
-    modal.classList.add('show');
-    document.body.style.overflow = 'hidden'; // Prevent background scrolling
-  });
+  var FORM_ACTION = 'https://formspree.io/f/xblkqbrp';
 
-  // Close modal
-  closeBtn.addEventListener('click', () => {
-    modal.classList.remove('show');
-    document.body.style.overflow = ''; // Restore scrolling
-  });
+  var modalHTML =
+    '<div id="contactModal" class="modal-overlay">' +
+      '<div class="modal">' +
+        '<button id="closeModal" class="modal-close" aria-label="Close">&times;</button>' +
+        '<h2>Get in Touch</h2>' +
+        '<form id="contactForm" action="' + FORM_ACTION + '" method="POST">' +
+          '<label for="c-name">Name</label>' +
+          '<input id="c-name" name="name" type="text" required />' +
+          '<label for="c-email">Email</label>' +
+          '<input id="c-email" name="email" type="email" required />' +
+          '<label for="c-phone">Phone</label>' +
+          '<input id="c-phone" name="phone" type="tel" />' +
+          '<label for="c-message">Message</label>' +
+          '<textarea id="c-message" name="message" rows="4" required></textarea>' +
+          '<button type="submit" id="contactSubmit">Send</button>' +
+        '</form>' +
+        '<p id="contactSuccess" hidden>Thank you! We\'ll be in touch soon.</p>' +
+        '<p id="contactError" hidden>Sorry, something went wrong. Please try again.</p>' +
+      '</div>' +
+    '</div>';
 
-  // Close modal when clicking outside
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) {
-      modal.classList.remove('show');
-      document.body.style.overflow = '';
-    }
-  });
+  document.body.insertAdjacentHTML('beforeend', modalHTML);
 
-  // Close modal with Escape key
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.classList.contains('show')) {
-      modal.classList.remove('show');
-      document.body.style.overflow = '';
-    }
-  });
+  var modal = document.getElementById('contactModal');
+  var closeBtn = document.getElementById('closeModal');
+  var contactTriggers = document.querySelectorAll('.contact-trigger');
 
-  // Form handling
-  const form = document.getElementById('contactForm');
-  const btn  = document.getElementById('contactSubmit');
-  const ok   = document.getElementById('contactSuccess');
-  const err  = document.getElementById('contactError');
+  if (!modal || !closeBtn) return;
 
-  // Optional: auto-save drafts so users don't lose text
-  const fields = ['name','email','phone','message'];
-  const key = 'contactDraft';
-  try {
-    const saved = JSON.parse(localStorage.getItem(key) || '{}');
-    fields.forEach(f => {
-      const el = form.querySelector(`[name="${f}"]`);
-      if (el && saved[f]) el.value = saved[f];
-      if (el) {
-        el.addEventListener('input', () => {
-          const cur = JSON.parse(localStorage.getItem(key) || '{}');
-          cur[f] = el.value;
-          localStorage.setItem(key, JSON.stringify(cur));
-        });
-      }
-    });
-  } catch (_) {}
-
-  form.addEventListener('submit', async (e) => {
+  function openModal(e) {
     e.preventDefault();
-    ok.hidden = true;
-    err.hidden = true;
+    modal.classList.add('show');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modal.classList.remove('show');
+    document.body.style.overflow = '';
+  }
+
+  contactTriggers.forEach(function (el) { el.addEventListener('click', openModal); });
+  closeBtn.addEventListener('click', closeModal);
+
+  modal.addEventListener('click', function (e) {
+    if (e.target === modal) closeModal();
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && modal.classList.contains('show')) closeModal();
+  });
+
+  var form = document.getElementById('contactForm');
+  var submitBtn = document.getElementById('contactSubmit');
+  var successMsg = document.getElementById('contactSuccess');
+  var errorMsg = document.getElementById('contactError');
+
+  if (!form) return;
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    successMsg.hidden = true;
+    errorMsg.hidden = true;
 
     if (!form.reportValidity()) return;
 
-    btn.disabled = true;
-    btn.textContent = 'Sending…';
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending\u2026';
 
-    const data = Object.fromEntries(new FormData(form).entries());
+    var data = {};
+    new FormData(form).forEach(function (val, key) { data[key] = val; });
 
-    try {
-      const res = await fetch(form.action, {
-        method: 'POST',
-        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      });
-
+    fetch(form.action, {
+      method: 'POST',
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    })
+    .then(function (res) {
       if (res.ok) {
-        ok.hidden = false;
+        successMsg.hidden = false;
         form.reset();
-        localStorage.removeItem('contactDraft');
-        
-        // Close modal after successful submission (optional)
-        setTimeout(() => {
-          modal.classList.remove('show');
-          document.body.style.overflow = '';
-        }, 2000);
+        setTimeout(closeModal, 2000);
       } else {
-        const info = await res.json().catch(() => ({}));
-        err.textContent = info?.errors?.[0]?.message || 'Sorry, something went wrong. Please try again.';
-        err.hidden = false;
+        return res.json().catch(function () { return {}; }).then(function (info) {
+          errorMsg.textContent = (info.errors && info.errors[0] && info.errors[0].message) ||
+            'Sorry, something went wrong. Please try again.';
+          errorMsg.hidden = false;
+        });
       }
-    } catch (e2) {
-      err.hidden = false;
-    } finally {
-      btn.disabled = false;
-      btn.textContent = 'Send';
-    }
+    })
+    .catch(function () {
+      errorMsg.hidden = false;
+    })
+    .then(function () {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send';
+    });
   });
 })();

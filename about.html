@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About — HT DeepStretch</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="about.css" />
+  <link rel="stylesheet" href="contact.css" />
+</head>
+<body>
+  <div id="bezier-bg" class="bezier-bg" aria-hidden="true"></div>
+  <header class="site-header">
+    <div class="header-bar">
+      <a class="logo" href="index.html" aria-label="HT DeepStretch home">
+        <img src="images/logo.png" alt="HT DeepStretch" class="logo-img" />
+      </a>
+      <button class="nav-toggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav>
+        <a href="about.html" class="active">Why DeepStretch</a>
+        <a href="studio.html">Our Studio</a>
+        <a href="#" id="contactBtn" class="nav-btn contact-trigger">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="about-layout">
+    <div class="about-left">
+      <h1 class="title-subpage">
+        <img src="images/titlemark2.png" alt="" class="titlemark" />
+        <span class="title-subpage-text">
+          <span>Why</span>
+          <span>Deep</span>
+          <span>Stretch.</span>
+        </span>
+      </h1>
+      <a href="https://deepstretch.as.me/schedule/b7cc71d9/?appointmentTypeIds%5B%5D=83541179" class="cta-btn">
+        Book Your Sessions <img src="images/arrow.png" alt="" class="cta-arrow" />
+      </a>
+      <a href="#" class="contact-trigger contact-cta-portrait">Contact</a>
+    </div>
+    <div class="about-content">
+      <p class="about-p1">A healthy body depends on balanced muscles and soft tissue function. Daily posture, and repetitive strain progressively create tension that accumulates within the body &mdash; weakening muscles, stressing joints, and increasing injury risk.</p>
+      <p class="about-p2">At DeepStretch+, we offer exclusive one-on-one assisted stretch sessions designed to relief and effectively release muscle tension and improve posture. Integrating deep stretch with personalized mobility and strength training, we are dedicated to building your body to a healthier and more active lifestyle.</p>
+      <p class="about-p3">It's time to unlock your full potential.</p>
+    </div>
+  </main>
+  <script src="bezier-background.js"></script>
+  <script src="contact.js"></script>
+  <script>
+    document.querySelector('.nav-toggle').addEventListener('click', function() {
+      this.classList.toggle('open');
+      document.querySelector('nav').classList.toggle('open');
+    });
+  </script>
+</body>
+</html>

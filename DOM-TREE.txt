@@ -1,0 +1,91 @@
+HT DeepStretch — DOM Tree Structure
+===================================
+Last updated: 2026-03-04
+
+This document shows the DOM (Document Object Model) tree for the website.
+All pages (index.html, about.html, studio.html) share the same structure.
+The SVG inside #bezier-bg is injected by bezier-background.js at runtime.
+
+
+INITIAL (from HTML)
+-------------------
+
+document
+└── html (lang="en")
+    ├── head
+    │   ├── meta (charset="utf-8")
+    │   ├── meta (name="viewport" content="width=device-width, initial-scale=1")
+    │   ├── title
+    │   │   └── [text: page-specific]
+    │   └── link (rel="stylesheet" href="styles.css")
+    │
+    └── body
+        ├── div#bezier-bg.bezier-bg (aria-hidden="true")
+        │   └── [empty — filled by JS]
+        │
+        ├── header.site-header
+        │   └── div.header-bar
+        │       ├── a.logo (href="index.html" aria-label="HT DeepStretch home")
+        │       │   └── img.logo-img (src="logo.png" alt="HT DeepStretch")
+        │       └── nav
+        │           ├── a (href="index.html") [class="active" on index only]
+        │           ├── a (href="about.html") [class="active" on about only]
+        │           └── a (href="studio.html") [class="active" on studio only]
+        │
+        ├── main
+        │   ├── h1 [page-specific text]
+        │   └── [page-specific content]
+        │
+        └── script (src="bezier-background.js")
+
+
+AFTER bezier-background.js RUNS
+-------------------------------
+
+document
+└── html (lang="en")
+    ├── head
+    │   ├── meta (charset="utf-8")
+    │   ├── meta (name="viewport" content="width=device-width, initial-scale=1")
+    │   ├── title
+    │   │   └── [text: page-specific]
+    │   └── link (rel="stylesheet" href="styles.css")
+    │
+    └── body
+        ├── div#bezier-bg.bezier-bg (aria-hidden="true")
+        │   └── svg (width, height from viewport)
+        │       ├── path (d=paths.tl, fill=cols[0])  ← top-left region
+        │       ├── path (d=paths.tr, fill=cols[1])  ← top-right region
+        │       ├── path (d=paths.bl, fill=cols[2])  ← bottom-left region
+        │       └── path (d=paths.br, fill=cols[3])  ← bottom-right region
+        │
+        ├── header.site-header
+        │   └── div.header-bar
+        │       ├── a.logo (href="index.html" aria-label="HT DeepStretch home")
+        │       │   └── img.logo-img (src="logo.png" alt="HT DeepStretch")
+        │       └── nav
+        │           ├── a (href="index.html")
+        │           ├── a (href="about.html")
+        │           └── a (href="studio.html")
+        │
+        ├── main
+        │   ├── h1 [page-specific text]
+        │   └── [page-specific content]
+        │
+        └── script (src="bezier-background.js")
+
+
+PAGE-SPECIFIC MAIN CONTENT
+--------------------------
+
+index.html:  <h1>HT DeepStretch</h1> + <p>Move Free & Live Healthy</p>
+about.html:  <h1>About Us</h1>
+studio.html: <h1>Studio</h1>
+
+
+LEGEND
+------
+#id       = element with id="id"
+.class    = element with class="class"
+(details) = attributes
+[text]    = text content or comment
