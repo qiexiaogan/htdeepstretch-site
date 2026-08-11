@@ -187,8 +187,12 @@ a.contact-item:hover { color: var(--teal); }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .reveal { opacity: 1; transform: none; transition: none; } }
 
 @media (max-width: 1050px) {
-  .site-header { grid-template-columns: 1fr auto; }
-  .site-header nav { display: none; }
+  html { scroll-padding-top: 124px; }
+  .site-header { height: 116px; grid-template-columns: 1fr auto; align-items: start; padding-top: 14px; }
+  .site-header.scrolled { height: 110px; }
+  .site-header nav { position: absolute; top: 64px; left: 0; right: 0; display: flex; height: 46px; align-items: center; gap: 28px; padding: 0 22px; overflow-x: auto; overscroll-behavior-x: contain; background: rgba(7, 63, 62, .88); border-top: 1px solid rgba(255,255,255,.12); border-bottom: 1px solid rgba(255,255,255,.12); scrollbar-width: none; white-space: nowrap; }
+  .site-header nav::-webkit-scrollbar { display: none; }
+  .site-header nav a { flex: 0 0 auto; }
   .hero-content { width: min(660px, 65vw); }
   .feature-row { grid-template-columns: repeat(2, 1fr); }
   .feature-row article:nth-child(3) { border-left: 0; padding-left: 0; }
@@ -202,7 +206,10 @@ a.contact-item:hover { color: var(--teal); }
 @media (max-width: 760px) {
   body { padding-bottom: 72px; }
   h2 { font-size: clamp(2.2rem, 11vw, 3.4rem); }
-  .site-header { height: 64px; padding: 0 18px; }
+  .site-header { height: 110px; padding: 14px 18px 0; }
+  .site-header.scrolled { height: 110px; }
+  .site-header nav { top: 62px; height: 48px; justify-content: space-between; gap: 16px; padding: 0 14px; }
+  .site-header nav a { font-size: .82rem; }
   .site-header > .button { display: none; }
   .brand { font-size: 1.3rem; }
   .hero { min-height: 780px; align-items: flex-end; }
