@@ -14,7 +14,7 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.12 });
 
-document.querySelectorAll(".section, .benefits-section, .visit-section, .final-cta").forEach((section) => {
+document.querySelectorAll(".section, .merged-intro, .benefits-section, .visit-section, .final-cta").forEach((section) => {
   section.classList.add("reveal");
   observer.observe(section);
 });
