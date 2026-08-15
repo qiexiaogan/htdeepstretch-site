@@ -26,7 +26,15 @@ h3 { line-height: 1.2; }
 .site-header { position: fixed; z-index: 50; inset: 0 0 auto; height: 78px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 28px; padding: 0 clamp(22px, 4vw, 72px); color: white; transition: background-color .2s ease, box-shadow .2s ease; }
 .site-header.scrolled { height: 78px; background: rgba(7, 63, 62, .97); box-shadow: 0 8px 24px rgba(0,0,0,.10); }
 .brand { font-size: 1.45rem; font-weight: 700; text-decoration: none; letter-spacing: -.045em; }
-.brand span { color: #74c8b8; }
+.brand span {
+  display: inline-block;
+  color: #74c8b8;
+  font-size: .6em;
+  line-height: 1;
+  margin-left: .08em;
+  vertical-align: super;
+  letter-spacing: 0;
+}
 .site-header nav { display: flex; align-items: center; gap: 28px; }
 .site-header nav a, .site-footer a { text-decoration: none; font-weight: 600; font-size: .92rem; }
 .site-header > .button { justify-self: end; }
