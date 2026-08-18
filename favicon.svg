@@ -1,5 +1,36 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="15" fill="#0e5b59"/>
-  <path fill="#ffffff" d="M14 12h15c14 0 23 8 23 20s-9 20-23 20H14V12zm9 8v24h6c8.5 0 14-4.5 14-12s-5.5-12-14-12h-6z"/>
-  <path d="M48 8v12M42 14h12" fill="none" stroke="#74c8b8" stroke-width="5" stroke-linecap="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-labelledby="title desc">
+  <title id="title">DeepStretch+ DS+ brand mark</title>
+  <desc id="desc">Studio-teal rounded square with a warm-white DS monogram and aqua superscript plus.</desc>
+  <defs>
+    <linearGradient id="dsGradient" x1="250" y1="320" x2="770" y2="760" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFFDF8"/>
+      <stop offset="0.72" stop-color="#F6FBF9"/>
+      <stop offset="1" stop-color="#D8EEE9"/>
+    </linearGradient>
+    <linearGradient id="plusGradient" x1="790" y1="300" x2="880" y2="420" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFFDF8"/>
+      <stop offset="0.55" stop-color="#D8F0EB"/>
+      <stop offset="1" stop-color="#8FCFC5"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="28" y="28" width="968" height="968" rx="146" fill="#135E63"/>
+
+  <path d="M255 363 V690 H370 C468 690 515 630 515 526.5 C515 423 468 363 370 363 Z"
+        fill="none" stroke="url(#dsGradient)" stroke-width="76"
+        stroke-linejoin="round" stroke-linecap="round"/>
+
+  <path d="M760 397
+           C727 361 664 351 620 380
+           C577 408 584 456 630 478
+           C662 494 706 503 738 526
+           C784 559 783 615 741 651
+           C697 689 625 686 584 646"
+        fill="none" stroke="url(#dsGradient)" stroke-width="76"
+        stroke-linecap="round" stroke-linejoin="round"/>
+
+  <g stroke="url(#plusGradient)" stroke-width="42" stroke-linecap="round">
+    <path d="M841 330 V423"/>
+    <path d="M794.5 376.5 H887.5"/>
+  </g>
 </svg>
